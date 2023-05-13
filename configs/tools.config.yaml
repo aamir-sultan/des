@@ -1,0 +1,23 @@
+# Config file for tools installation and setup
+
+# tool: -Name of the YAML entry.
+#   name: "tmux" -Name of the tool.
+#   filename: "tmux" -Name of the filename available at the src dir.
+#   paths: -Paths for the tool setup.
+#     src: "../toolbox/tmux/" -Source path for the tool.
+#     dst: "~/.local/des/bin/" -Destination path for the tool.
+
+tools:
+  - tmux:
+      name: "tmux"
+      filename: "tmux"
+      paths:
+        - src: "$TOOLBOX/tmux/"
+        - dst: "$HOME/.local/des/bin/"
+
+  - neovim:
+      name: "neovim"
+      filename: "nvim.appimage"
+      paths:
+        - src: "$TOOLBOX/nvim/"
+        - dst: "$HOME/.local/des/bin/"

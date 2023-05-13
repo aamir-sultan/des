@@ -8,21 +8,21 @@ if [ -z ${FONTS_SRC+x} ]; then
     FONTS_SRC=$1
   fi
 else
-  echo "The variable FONTS_SRC is defined."
+  # echo "The variable FONTS_SRC is defined."
+  # Set the source directory path
+  src_dir=$FONTS_SRC
 fi
 
 if [ -z ${FONTS_DEST+x} ]; then
   echo "The variable FONTS_DEST is not defined. Defaulting to ~/.fonts"
   FONTS_DEST=~/.fonts
 else
-  echo "The variable FONTS_DEST is defined."
+  # echo "The variable FONTS_DEST is defined."
+  # Set the target directory path
+  dst_dir=$FONTS_DEST
 fi
 
-# Set the source directory path
-src_dir=$FONTS_SRC
 
-# Set the target directory path
-dst_dir=$FONTS_DEST
 
 # Check if the source directory exists
 if [[ ! -d "$src_dir" ]]; then

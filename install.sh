@@ -1,5 +1,8 @@
 #!/bin/bash
 
-source ./path_exports
+source ./path_exports.sh
+export PATH=$PATH:$TOOLBOX/yq
 
-source scripts/fonts_installer.sh
+source $FONTS_INSTALLER
+source $TOOLS_INSTALLER
+

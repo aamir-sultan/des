@@ -15,8 +15,8 @@ tools:
         - src: "$TOOLBOX/tmux/"
         - dst: "$HOME/.local/des/bin/"
 
-  - neovim:
-      name: "neovim"
+  - nvim:
+      name: "nvim"
       filename: "nvim.appimage"
       paths:
         - src: "$TOOLBOX/nvim/"

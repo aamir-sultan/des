@@ -19,13 +19,14 @@ for key in $tools; do
   dst_path=$(echo $dst_path | sed 's/null//' | sed 's/ //g')
   src_file=$(echo $src_file | sed 's/null//' | sed 's/ //g')
 
+  src_path=$(eval "echo $src_path")
+  dst_path=$(eval "echo $dst_path")
+
   # Check if the target directory exists
   if [[ ! -d "$dst_path" ]]; then
     mkdir -p "$dst_path"
   fi
 
-  src_path=$(eval "echo $src_path")
-  dst_path=$(eval "echo $dst_path")
  # # Check if the file exists
  if [ -f "$dst_path/$key" ]; then
    echo "$key already available at $dst_path. Skiping symbolic linking"

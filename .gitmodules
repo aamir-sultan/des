@@ -4,3 +4,6 @@
 [submodule "toolbox"]
 	path = toolbox
 	url = https://github.com/aamir-sultan/toolbox.git
+[submodule "dotfiles"]
+	path = dotfiles
+	url = https://gitlab.com/aamir-sultan/dotfiles

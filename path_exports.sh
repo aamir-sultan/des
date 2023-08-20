@@ -1,8 +1,7 @@
 # DES_PATH=`pwd`
 # Check if the DES_PATH is not set
 if [ -z "$DES_PATH" ]; then
-# Set the DES_PATH path to the this script and one step beyond.
-    #DES_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+# Set the DES_PATH path to this script.
     DES_PATH="$(cd "$(dirname "$0")" && pwd)"
 fi
 

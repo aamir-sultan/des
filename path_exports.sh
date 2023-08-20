@@ -3,6 +3,7 @@ DES_PATH=`pwd`
 TOOLBOX="$DES_PATH/toolbox"
 SCRIPTS="$DES_PATH/scripts"
 CONFIGS="$DES_PATH/configs"
+DOTFILES="$DES_PATH/dotfiles"
 
 
 
@@ -13,6 +14,17 @@ TOOLS_INSTALLER="$SCRIPTS/tools_installer.sh"
 FONTS_SRC="$DES_PATH/fonts"
 FONTS_DEST="$HOME/.fonts"
 FONTS_INSTALLER="$SCRIPTS/fonts_installer.sh"
+
+# Path for dotfiles
+DOTFILES_CLONER="$SCRIPTS/get_dotfiles.sh"
+DOTFILES_INSTALLER="$SCRIPTS/dotfiles_installer.sh"
+
+# Cleanup script path
+CLEANUP="$SCRIPTS/cleanup.sh"
+
+# uninstall script path
+UNINSTALL="$DES_PATH/uninstall.sh"
+
 
 echo -e "================================================================="
 echo -e "DES_PATH     path: $DES_PATH"

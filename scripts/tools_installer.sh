@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Cloning toolbox for des to work
+source $SCRIPTS/get_tools.sh
+
 # creating symlinks for tools from toolbox directory
 
 # Set the file name

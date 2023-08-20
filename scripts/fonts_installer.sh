@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source $SCRIPTS/get_fonts.sh
 if [ -z ${FONTS_SRC+x} ]; then
   if [ -z ${1+x} ]; then
     echo "The variable FONTS_SRC is not defined. Pass the source dir path for fonts as first argument to the script"

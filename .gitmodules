@@ -1,9 +1,0 @@
-[submodule "fonts"]
-	path = fonts
-	url = https://github.com/aamir-sultan/fonts.git
-[submodule "toolbox"]
-	path = toolbox
-	url = https://github.com/aamir-sultan/toolbox.git
-[submodule "dotfiles"]
-	path = dotfiles
-	url = https://gitlab.com/aamir-sultan/dotfiles

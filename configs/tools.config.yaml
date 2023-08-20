@@ -17,7 +17,8 @@ tools:
 
   - nvim:
       name: "nvim"
-      filename: "nvim.appimage"
+      filename: "nvim"
       paths:
-        - src: "$TOOLBOX/nvim/"
+        # - src: "$TOOLBOX/nvim/"
+        - src: "$TOOLBOX/nvim/squashfs-root"
         - dst: "$HOME/.local/des/bin/"

@@ -4,7 +4,7 @@ DIR=$TOOLBOX
 
 # Check if the source directory exists
 if [[ ! -d "$DIR" ]]; then
-  echo "The $DIR directory does not exist."
+  echo "The $DIR directory does not exist. Cloning toolbox."
   git clone https://github.com/aamir-sultan/toolbox.git
   #exit 1
 else

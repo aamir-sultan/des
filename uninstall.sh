@@ -1,5 +1,7 @@
 #!/bin/bash
-if [ -z ./dotfiles/uninstall.sh ];
+
+source ./path_exports.sh
+if [ -f ./dotfiles/uninstall.sh ];
 then
   source ./dotfiles/uninstall.sh
 fi

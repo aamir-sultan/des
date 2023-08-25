@@ -13,7 +13,8 @@ tools:
       filename: "tmux"
       paths:
         - src: "$TOOLBOX/tmux/"
-        - dst: "$HOME/.local/des/bin/"
+        # - dst: "$HOME/.local/des/bin/"
+        - dst: "$DOTFILES/bin/"
 
   - nvim:
       name: "nvim"
@@ -21,4 +22,5 @@ tools:
       paths:
         # - src: "$TOOLBOX/nvim/"
         - src: "$TOOLBOX/nvim/squashfs-root"
-        - dst: "$HOME/.local/des/bin/"
+        # - dst: "$HOME/.local/des/bin/"
+        - dst: "$DOTFILES/bin/"

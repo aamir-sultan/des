@@ -5,6 +5,7 @@ DIRS+="$HOME/.local/des "
 DIRS+="toolbox "
 DIRS+="fonts "
 DIRS+="dotfiles "
+DIRS+="./bin "
 
 
 FILES=""

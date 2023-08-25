@@ -1,6 +1,8 @@
 #!/bin/bash
-
-source ./dotfiles/uninstall.sh
+if [ -z ./dotfiles/uninstall.sh ];
+then
+  source ./dotfiles/uninstall.sh
+fi
 DIRS=""
 DIRS+="$HOME/.local/des "
 DIRS+="toolbox "

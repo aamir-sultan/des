@@ -9,6 +9,7 @@ if [[ ! -d "$DIR" ]]; then
   #exit 1
 else
   cd $DIR
+  echo "Updating $DIR."
   git pull
 fi
 

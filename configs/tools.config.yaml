@@ -24,3 +24,12 @@ tools:
         - src: "$TOOLBOX/nvim/squashfs-root"
         # - dst: "$HOME/.local/des/bin/"
         - dst: "$DOTFILES/bin/"
+
+  - rg:
+      name: "rg"
+      filename: "rg"
+      paths:
+        # - src: "$TOOLBOX/nvim/"
+        - src: "$TOOLBOX/ripgrep/"
+        # - dst: "$HOME/.local/des/bin/"
+        - dst: "$DOTFILES/bin/"

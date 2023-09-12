@@ -18,9 +18,11 @@ for key in $tools; do
   src_path=$(yq ".tools[].$key.paths[].src" $file_name)
   dst_path=$(yq ".tools[].$key.paths[].dst" $file_name)
   src_file=$(yq ".tools[].$key.filename" $file_name)
-  src_path=$(echo $src_path | sed 's/null//' | sed 's/ //g')
-  dst_path=$(echo $dst_path | sed 's/null//' | sed 's/ //g')
-  src_file=$(echo $src_file | sed 's/null//' | sed 's/ //g')
+  src_path=$(echo $src_path | sed 's/null//' | sed 's/ //g' | sed 's/null//g')
+  dst_path=$(echo $dst_path | sed 's/null//' | sed 's/ //g' | sed 's/null//g')
+  src_file=$(echo $src_file | sed 's/null//' | sed 's/ //g' | sed 's/null//g')
+
+  # echo "Name of the Source file: $src_file"
 
   src_path=$(eval "echo $src_path")
   dst_path=$(eval "echo $dst_path")

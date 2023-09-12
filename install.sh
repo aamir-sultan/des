@@ -11,7 +11,8 @@ source $DOTFILES_CLONER
 source $DOTFILES_INSTALLER
 echo -------------------------------------------------------------------------------
 echo -------------------------------------------------------------------------------
-source $FONTS_INSTALLER
+# Its in working form. Just commented as it is not required in most environments.
+# source $FONTS_INSTALLER
 echo -------------------------------------------------------------------------------
 echo -------------------------------------------------------------------------------
 source $TOOLS_INSTALLER

@@ -13,23 +13,25 @@ tools:
       filename: "tmux"
       paths:
         - src: "$TOOLBOX/tmux/"
-        # - dst: "$HOME/.local/des/bin/"
         - dst: "$DOTFILES/bin/"
 
   - nvim:
       name: "nvim"
       filename: "nvim"
       paths:
-        # - src: "$TOOLBOX/nvim/"
         - src: "$TOOLBOX/nvim/squashfs-root"
-        # - dst: "$HOME/.local/des/bin/"
         - dst: "$DOTFILES/bin/"
 
   - rg:
       name: "rg"
       filename: "rg"
       paths:
-        # - src: "$TOOLBOX/nvim/"
         - src: "$TOOLBOX/ripgrep/"
-        # - dst: "$HOME/.local/des/bin/"
+        - dst: "$DOTFILES/bin/"
+  
+  - fd:
+      name: "fd"
+      filename: "fd"
+      paths:
+        - src: "$TOOLBOX/fd/"
         - dst: "$DOTFILES/bin/"

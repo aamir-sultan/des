@@ -8,7 +8,7 @@ fi
 #---------------------------------------
 [ -f $FZF_PATH/.fzf.bash ] && source $FZF_PATH/.fzf.bash
 export FZF_DEFAULT_OPTS="--extended"
-export FZF_DEFAULT_COMMAND='rg --hidden -l -g '!.git/' "" 2> /dev/null'
-export FZF_CTRL_T_COMMAND='rg --hidden -l -g '!.git/' "" 2> /dev/null'
+# export FZF_DEFAULT_COMMAND='rg --hidden -l -g '!.git/' "" 2> /dev/null'
+# export FZF_CTRL_T_COMMAND='rg --hidden -l -g '!.git/' "" 2> /dev/null'
 # export FZF_DEFAULT_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"
 # export FZF_CTRL_T_COMMAND="find \! \( -path '*/.git' -prune \) -printf '%P\n'"

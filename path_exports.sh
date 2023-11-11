@@ -9,6 +9,7 @@ TOOLBOX="$DES_PATH/toolbox"
 SCRIPTS="$DES_PATH/scripts"
 CONFIGS="$DES_PATH/configs"
 DOTFILES="$DES_PATH/dotfiles"
+DES_EXTRAS="$DES_PATH/extras"
 
 
 
@@ -24,6 +25,13 @@ FONTS_INSTALLER="$SCRIPTS/fonts_installer.sh"
 DOTFILES_CLONER="$SCRIPTS/get_dotfiles.sh"
 DOTFILES_INSTALLER="$SCRIPTS/dotfiles_installer.sh"
 
+# Extra setup fof different tools
+DOTFILES_EXTRAS="$DOTFILES/extras"
+EXTRA_SETUP="$SCRIPTS/extras.sh"
+EXTRAS_RCLIB="$DES_EXTRAS/rc_lib"
+EXTRA_SRC_PATH="$DES_EXTRAS/extra_rc_lib.sh"
+EXTRA_ANCHOR_PATH="$DOTFILES_EXTRAS/.extra"
+
 # Cleanup script path
 CLEANUP="$SCRIPTS/cleanup.sh"
 
@@ -36,6 +44,7 @@ echo -e "DES_PATH     path: $DES_PATH"
 echo -e "SCRIPTS      path: $SCRIPTS"
 echo -e "CONFIGS      path: $CONFIGS"
 echo -e "TOOLBOX      path: $TOOLBOX"
+echo -e "DES_EXTRAS   path: $DES_EXTRAS"
 echo -e "TOOL_CONFIG  path: $TOOLS_CONFIG"
 echo -e "FONTS_SRC    path: $FONTS_SRC"
 echo -e "FONTS_DEST   path: $FONTS_DEST"

@@ -17,4 +17,4 @@ export FZF_DEFAULT_OPTS="--extended"
 export FZF_DEFAULT_COMMAND="fd -H -E .git"
 export FZF_CTRL_T_COMMAND="fd -H -E .git"
 
-alias fz='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias fzp='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'

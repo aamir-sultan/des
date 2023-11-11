@@ -5,6 +5,8 @@ if [ -f ./dotfiles/uninstall.sh ];
 then
   source ./dotfiles/uninstall.sh
 fi
+
+source $TOOLBOX/fzf/uninstall
 DIRS=""
 DIRS+="$HOME/.local/des "
 DIRS+="toolbox "

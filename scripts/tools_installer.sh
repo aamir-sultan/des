@@ -44,3 +44,19 @@ for key in $tools; do
   ln -s $src_path/$src_file $dst_path/$key
  fi
 done
+
+DIR="$TOOLBOX/fzf"
+# Installing Fuzzy Finder in toolbox
+if [[ -d "$DIR" ]]; then
+  echo $DIR already available 
+else
+  echo Working on $(basename $DIR) ...
+  case $(basename $DIR) in
+     
+    fzf)
+        git clone --depth 1 https://github.com/junegunn/fzf.git $TOOLBOX/fzf
+        $TOOLBOX/fzf/install --key-bindings --completion --no-update-rc
+        ;;
+           
+   esac
+fi

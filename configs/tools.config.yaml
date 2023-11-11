@@ -35,3 +35,10 @@ tools:
       paths:
         - src: "$TOOLBOX/fd/"
         - dst: "$DOTFILES/bin/"
+
+  - bat:
+      name: "bat"
+      filename: "bat"
+      paths:
+        - src: "$TOOLBOX/bat/"
+        - dst: "$DOTFILES/bin/"

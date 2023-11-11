@@ -33,6 +33,7 @@ fi
 # Fields=("name, url, dload_path, dload_tool, dload_switches, post_process_cmds")
 extra_bins=(
   "fd, https://github.com/sharkdp/fd/releases/download/v8.7.1/fd-v8.7.1-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+  "bat, https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 )
 
 # Fields=("git_url, path, hash_or_branch, clone_switches, install_switches/install_command")

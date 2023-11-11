@@ -36,18 +36,21 @@ c_echo() {
 }
 
 c_echo "green" "*******************************************************************************"
+c_echo "red"   "                              DOTFILES Installation" 
 c_echo "green" "*******************************************************************************"
 source $DOTFILES_CLONER
 source $DOTFILES_INSTALLER
 c_echo "green" "*******************************************************************************"
+c_echo "red"   "                              TOOLs Installation" 
 c_echo "green" "*******************************************************************************"
 # Its in working form. Just commented as it is not required in most environments.
 # source $FONTS_INSTALLER
+source $TOOLS_CLONER
 source $EXTRA_SETUP
-c_echo "green" "*******************************************************************************"
 c_echo "green" "*******************************************************************************"
 source $TOOLS_INSTALLER
 c_echo "green" "*******************************************************************************"
+c_echo "red"   "                              FINISHED Installation" 
 c_echo "green" "*******************************************************************************"
 
 # source $CLEANUP

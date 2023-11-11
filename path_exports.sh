@@ -14,6 +14,7 @@ DES_EXTRAS="$DES_PATH/extras"
 
 
 TOOLS_CONFIG="$CONFIGS/tools.config.yaml"
+TOOLS_CLONER="$SCRIPTS/get_tools.sh"
 TOOLS_INSTALLER="$SCRIPTS/tools_installer.sh"
 
 # Path for fonts

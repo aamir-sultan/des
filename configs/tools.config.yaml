@@ -19,7 +19,7 @@ tools:
       name: "nvim"
       filename: "nvim"
       paths:
-        - src: "$TOOLBOX/nvim/squashfs-root"
+        - src: "$TOOLBOX/nvim-linux64/bin"
         - dst: "$DOTFILES/bin/"
 
   - rg:

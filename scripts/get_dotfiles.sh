@@ -12,4 +12,3 @@ else
   echo "Updating $DIR."
   git pull
 fi
-

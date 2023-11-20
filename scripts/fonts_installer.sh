@@ -23,8 +23,6 @@ else
   dst_dir=$FONTS_DEST
 fi
 
-
-
 # Check if the source directory exists
 if [[ ! -d "$src_dir" ]]; then
   echo "The source directory does not exist."
@@ -43,4 +41,3 @@ done
 
 # Success message
 echo "Fonts copied successfully."
-

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ -z "$EXTRAS_RCLIB" ]; then
-# Set the DOTFILES path to the this script and one step beyond.
+    # Set the DOTFILES path to the this script and one step beyond.
     EXTRAS_RCLIB="$DOTFILES/../extras/rc_lib"
 fi
 

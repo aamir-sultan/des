@@ -1,20 +1,3 @@
-
-# # Installing Fuzzy Finder in toolbox
-# DIR="$TOOLBOX/fzf"
-# if [[ -d "$DIR" ]]; then
-#   echo $DIR already available 
-# else
-#   echo Working on $(basename $DIR) ...
-#   case $(basename $DIR) in
-     
-#     fzf)
-#         git clone --depth 1 https://github.com/junegunn/fzf.git $TOOLBOX/fzf
-#         $TOOLBOX/fzf/install --key-bindings --completion --no-update-rc
-#         mv ~/.fzf.bash $TOOLOX/fzf/.fzf.bash
-#         ;;
-#    esac
-# fi
-
 #! /bin/bash
 
 if [ ! -f $EXTRA_ANCHOR_PATH ]; then
@@ -24,10 +7,10 @@ if [ ! -f $EXTRA_ANCHOR_PATH ]; then
   fi
   echo Creating extra setup file at $EXTRA_ANCHOR_PATH
   touch $EXTRA_ANCHOR_PATH
-  echo -e "#! /bin/bash\n" >> $EXTRA_ANCHOR_PATH
-  echo "source $EXTRA_SRC_PATH" >> $EXTRA_ANCHOR_PATH
+  echo -e "#! /bin/bash\n" >>$EXTRA_ANCHOR_PATH
+  echo "source $EXTRA_SRC_PATH" >>$EXTRA_ANCHOR_PATH
 else
-  echo Setup file for extra already exists 
+  echo Setup file for extra already exists
 fi
 
 # Fields=("name, url, dload_path, dload_tool, dload_switches, post_process_cmds")
@@ -43,11 +26,11 @@ extras=(
   # "tvip_common, https://github.com/taichi-ishitani/tvip-common.git, tvip-common, d3641c7992260d0eae651f02c9778fe65eba6a9e"
 )
 
-for ((i=0; $i < ${#extras[*]}; i++)) do
+for ((i = 0; $i < ${#extras[*]}; i++)); do
   echo -------------------------------------------------------------------------------
   temp=(${extras[$i]})
   echo "Array elements: ${temp[@]}"
-  IFS=, read -ra repo_info <<< "${extras[$i]}"
+  IFS=, read -ra repo_info <<<"${extras[$i]}"
 
   name=${repo_info[0]}
   url=${repo_info[1]}
@@ -66,9 +49,11 @@ for ((i=0; $i < ${#extras[*]}; i++)) do
 
   # Cloning setup
   if [ ! -d $path ]; then
-    git clone $clone_switches $url $path 
+    git clone $clone_switches $url $path
     echo Entering $path
-    cd $path; git fetch; git checkout $hash
+    cd $path
+    git fetch
+    git checkout $hash
     # Installing setup
     if [ ! -z "$install_command" ]; then
       eval $install_command
@@ -77,16 +62,15 @@ for ((i=0; $i < ${#extras[*]}; i++)) do
     echo -e "\n$name Already available at $path"
   fi
 
-
   cd -
   echo -------------------------------------------------------------------------------
 done
 
-for ((i=0; $i < ${#extra_bins[*]}; i++)) do
+for ((i = 0; $i < ${#extra_bins[*]}; i++)); do
   echo -------------------------------------------------------------------------------
   temp=(${extra_bins[$i]})
   echo "Array elements: ${temp[@]}"
-  IFS=, read -ra bin_info <<< "${extra_bins[$i]}"
+  IFS=, read -ra bin_info <<<"${extra_bins[$i]}"
 
   name=${bin_info[0]}
   url=${bin_info[1]}
@@ -115,9 +99,10 @@ for ((i=0; $i < ${#extra_bins[*]}; i++)) do
   # Cloning setup
   if [ ! -d $setup_path ]; then
     if [ ! -f $file_path ]; then
-      $dload_tool $url $dload_switches 
+      $dload_tool $url $dload_switches
     fi
-    cd $dload_path; mv $filename dfile
+    cd $dload_path
+    mv $filename dfile
     echo "Entered $(pwd)"
 
     # Installing setup
@@ -125,17 +110,15 @@ for ((i=0; $i < ${#extra_bins[*]}; i++)) do
       eval $post_proc_cmd
       mv $name* $name
     fi
-      rm -rf dfile $filename
+    rm -rf dfile $filename
 
   else
     echo -e "\n$name Already available at $dload_path"
   fi
 
-    cd -
+  cd -
   echo -------------------------------------------------------------------------------
 done
 
 cd $DES_PATH
 echo Back to $(pwd)
-
-

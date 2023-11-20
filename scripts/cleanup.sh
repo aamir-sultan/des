@@ -5,7 +5,6 @@ DIRS+="fonts "
 DIRS+="toolbox "
 # DIRS+="dotfiles "
 
-
 FILES=""
 FILES+="*.log "
 

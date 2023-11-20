@@ -31,15 +31,15 @@ for key in $tools; do
     mkdir -p "$dst_path"
   fi
 
- # # Check if the file exists
- if [ -f "$dst_path/$key" ]; then
-   echo "$key already available at $dst_path. Skiping symbolic linking"
-   mv $dst_path/$key $dst_path/$key.bak
-   echo "$key already available at $dst_path. $dst_path/$key is backuped to $dst_path/$key.bak"
-   echo "Symbolic linking $key from $src_path/$src_file to $dst_path/$key"
-   ln -s $src_path/$src_file $dst_path/$key
- else
-  echo "Symbolic linking $key from $src_path/$src_file to $dst_path/$key"
-  ln -s $src_path/$src_file $dst_path/$key
- fi
+  # # Check if the file exists
+  if [ -f "$dst_path/$key" ]; then
+    echo "$key already available at $dst_path. Skiping symbolic linking"
+    mv $dst_path/$key $dst_path/$key.bak
+    echo "$key already available at $dst_path. $dst_path/$key is backuped to $dst_path/$key.bak"
+    echo "Symbolic linking $key from $src_path/$src_file to $dst_path/$key"
+    ln -s $src_path/$src_file $dst_path/$key
+  else
+    echo "Symbolic linking $key from $src_path/$src_file to $dst_path/$key"
+    ln -s $src_path/$src_file $dst_path/$key
+  fi
 done

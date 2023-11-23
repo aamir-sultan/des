@@ -26,6 +26,8 @@ FONTS_INSTALLER="$SCRIPTS/fonts_installer.sh"
 DOTFILES_CLONER="$SCRIPTS/get_dotfiles.sh"
 DOTFILES_INSTALLER="$SCRIPTS/dotfiles_installer.sh"
 
+POST_PROCESS="$SCRIPTS/post_process.sh"
+
 # Extra setup fof different tools
 DOTFILES_EXTRAS="$DOTFILES/extras"
 EXTRA_SETUP="$SCRIPTS/extras.sh"

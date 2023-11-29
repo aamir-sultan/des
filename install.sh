@@ -3,6 +3,84 @@
 source ./path_exports.sh
 export PATH=$PATH:$TOOLBOX/yq
 
+# set -u
+
+prefix='~/.des'
+prefix_expand=~/.des
+
+fonts=0
+dotfiles=1
+tools=1
+whose_use=0
+
+help() {
+  cat << EOF
+usage: $0 [OPTIONS]
+
+    --help               Show this message
+    --all                Download and Install everything that is supported
+    --xdg                Generate files under \$XDG_CONFIG_HOME/.des
+    --[no-]fonts         Enable/disable fonts cloning and installation
+    --[no-]dotfiles      Enable/disable dotfiles cloning and installation
+    --[no-]tools         Enable/disable tools cloning and installation
+
+    --dev                Clone the development branch for fonts, dotfiles and
+                         toolbox
+    --my-br              Clone the my branch for fonts, dotfiles and toolbox
+    --main               Clone the main branch for fonts, dotfiles and toolbox
+
+EOF
+}
+
+for opt in "$@"; do
+  case $opt in
+    --help)
+      help
+      exit 0
+      ;;
+    --all)
+      fonts=1
+      dotfiles=1
+      tools=1
+      ;;
+    --xdg)
+      prefix='"${XDG_CONFIG_HOME:-$HOME/.config}"/.des'
+      prefix_expand=${XDG_CONFIG_HOME:-$HOME/.config}/.des
+      mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/.des"
+      ;;
+    --fonts)           fonts=1    ;;
+    --no-fonts)        fonts=0    ;;
+    --dotfiles)        dotfiles=1 ;;
+    --no-dotfiles)     dotfiles=0 ;;
+    --tools)           tools=1    ;;
+    --no-tools)        tools=0    ;;
+    --dev)             whose_use=0;;
+    --my-br)           whose_use=1;;
+    --main)            whose_use=2;;
+    *)
+      echo "unknown option: $opt"
+      help
+      exit 1
+      ;;
+  esac
+done
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+fzf_base=$(pwd)
+fzf_base_esc=$(printf %q "$fzf_base")
+
+ask() {
+  while true; do
+    read -p "$1 ([y]/n) " -r
+    REPLY=${REPLY:-"y"}
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      return 1
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      return 0
+    fi
+  done
+}
+
 # Define a function for colored echo
 c_echo() {
   local color="$1"

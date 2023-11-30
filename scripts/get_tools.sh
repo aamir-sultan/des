@@ -8,7 +8,10 @@ if [ $tools -eq 1 ]; then
   # Check if the source directory exists
   if [[ ! -d "$DIR" ]]; then
     # echo "The $DIR directory does not exist. Cloning toolbox."
-    git clone -b $br_name --depth 1 https://github.com/aamir-sultan/toolbox.git
+    # IF we don't use the --no-single-branch then at later stages we can't checkout to other branches
+    git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/toolbox.git
+    echo "Checking out $DIR repo to $br_name branch.."
+    git checkout $br_name
     #exit 1
   else
     cd $DIR
@@ -26,7 +29,7 @@ if [ $tools -eq 1 ]; then
       git pull
     else 
       echo "Checking out $DIR repo to $br_name branch.."
-      git checkout $br_name  
+      git fetch --depth 1 origin $br_name && git checkout $br_name  
     
     # Check again if the branch is successfully checked out
       repo_br_name=$(git symbolic-ref -q HEAD)

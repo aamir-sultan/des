@@ -5,7 +5,9 @@ DIR=$FONTS_SRC
 # Check if the source directory exists
 if [[ ! -d "$DIR" ]]; then
   # echo "The $DIR directory does not exist. Cloning fonts."
-  git clone -b $br_name --depth 1 https://github.com/aamir-sultan/fonts.git
+  git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/fonts.git
+  echo "Checking out $DIR repo to $br_name branch.."
+  git checkout $br_name
   #exit 1
 else
   cd $DIR
@@ -23,7 +25,7 @@ else
     git pull
   else 
     echo "Checking out $DIR repo to $br_name branch.."
-    git checkout $br_name  
+    git fetch --depth 1 origin $br_name && git checkout $br_name  
   
   # Check again if the branch is successfully checked out
     repo_br_name=$(git symbolic-ref -q HEAD)

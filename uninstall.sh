@@ -32,7 +32,7 @@ c_echo() {
   esac
 }
 
-source ./path_exports.sh
+source ./scripts/variables.sh
 
 if [ -f $TOOLBOX/fzf/uninstall ];
 then

@@ -41,3 +41,4 @@ done
 
 # Success message
 echo "Fonts copied successfully."
+chdir_to_base

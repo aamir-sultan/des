@@ -43,3 +43,4 @@ for key in $tools; do
     ln -s $src_path/$src_file $dst_path/$key
   fi
 done
+chdir_to_base

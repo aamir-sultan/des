@@ -27,3 +27,4 @@ source $TMUX_TPM_PATH/scripts/clean_plugins.sh &
 wait $! # Remove plugins that removed from .tmux.conf via script and wait for the script to get completed
 process_exit_status "clean_plugins.sh"
 c_echo "yellow" "-------------------------------------------------------------------------------"
+chdir_to_base

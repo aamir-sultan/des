@@ -1,9 +1,7 @@
 #!/bin/bash
 
-source ./path_exports.sh
-export PATH=$PATH:$TOOLBOX/yq
 
-# set -u
+# set -u # Good for catching issues in scripts where you might have uninitialized variables.
 
 prefix='~/.des'
 prefix_expand=~/.des
@@ -12,6 +10,7 @@ fonts=0
 dotfiles=1
 tools=1
 whose_use=0
+br_name="main"
 
 help() {
   cat << EOF
@@ -19,15 +18,16 @@ usage: $0 [OPTIONS]
 
     --help               Show this message
     --all                Download and Install everything that is supported
-    --xdg                Generate files under \$XDG_CONFIG_HOME/.des
+    --xdg                Generate files under \$XDG_CONFIG_HOME/.des (Not
+                         supported right now)
     --[no-]fonts         Enable/disable fonts cloning and installation
     --[no-]dotfiles      Enable/disable dotfiles cloning and installation
     --[no-]tools         Enable/disable tools cloning and installation
 
-    --dev                Clone the development branch for fonts, dotfiles and
+    --dev                Use the development branch for fonts, dotfiles and
                          toolbox
-    --my-br              Clone the my branch for fonts, dotfiles and toolbox
-    --main               Clone the main branch for fonts, dotfiles and toolbox
+    --my-br              Use the my branch for fonts, dotfiles and toolbox
+    --main               Use the main branch for fonts, dotfiles and toolbox
 
 EOF
 }
@@ -54,9 +54,15 @@ for opt in "$@"; do
     --no-dotfiles)     dotfiles=0 ;;
     --tools)           tools=1    ;;
     --no-tools)        tools=0    ;;
-    --dev)             whose_use=0;;
-    --my-br)           whose_use=1;;
-    --main)            whose_use=2;;
+    --dev)             whose_use=2
+                       br_name="dev-br"
+      ;;
+    --my-br)           whose_use=1
+                       br_name="my-br"
+      ;;
+    --main)            whose_use=0
+                       br_name="main"
+      ;;
     *)
       echo "unknown option: $opt"
       help
@@ -65,59 +71,29 @@ for opt in "$@"; do
   esac
 done
 
+function set_des_base() {
 cd "$(dirname "${BASH_SOURCE[0]}")"
-fzf_base=$(pwd)
-fzf_base_esc=$(printf %q "$fzf_base")
+DES_PATH=$(pwd)
+DES_PATH_ESC=$(printf %q "$DES_PATH")
 
-ask() {
-  while true; do
-    read -p "$1 ([y]/n) " -r
-    REPLY=${REPLY:-"y"}
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      return 1
-    elif [[ $REPLY =~ ^[Nn]$ ]]; then
-      return 0
-    fi
-  done
+# echo DES_PATH set to $DES_PATH
+
+# Keep variables in start as other files are using it so when they are source sometime the variable is not available.
+for file in $DES_PATH/scripts/{variables,functions,path,exports}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 }
 
-# Define a function for colored echo
-c_echo() {
-  local color="$1"
-  local message="$2"
-  local reset="\033[0m"  # Reset to default text color
-
-  case "$color" in
-    "red")
-      echo -e "\033[31m$message$reset"
-      ;;
-    "green")
-      echo -e "\033[32m$message$reset"
-      ;;
-    "yellow")
-      echo -e "\033[33m$message$reset"
-      ;;
-    "blue")
-      echo -e "\033[34m$message$reset"
-      ;;
-    "magenta")
-      echo -e "\033[35m$message$reset"
-      ;;
-    "cyan")
-      echo -e "\033[36m$message$reset"
-      ;;
-    *)
-      echo "Invalid color. Usage: colored_echo <color> <message>"
-      return 1
-      ;;
-  esac
-}
+set_des_base
 
 c_echo "green" "*******************************************************************************"
 c_echo "red"   "                              DOTFILES Installation" 
 c_echo "green" "*******************************************************************************"
 source $DOTFILES_CLONER
+echo_pwd
 source $DOTFILES_INSTALLER
+echo_pwd
 c_echo "green" "*******************************************************************************"
 c_echo "red"   "                              TOOLs Installation" 
 c_echo "green" "*******************************************************************************"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo_banner "POST PROCESS Setup"
+
 function process_exit_status() {
 
     script_name=$1

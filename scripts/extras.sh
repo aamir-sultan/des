@@ -1,5 +1,7 @@
 #! /bin/bash
 
+echo_banner "Resolving Dependencies"
+
 if [ ! -f $EXTRA_ANCHOR_PATH ]; then
   if [ ! -d $DOTFILES_EXTRAS ]; then
     echo Creating extras dir at $DOTFILES_EXTRAS

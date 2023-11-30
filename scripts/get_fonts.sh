@@ -5,7 +5,7 @@ DIR=$FONTS_SRC
 # Check if the source directory exists
 if [[ ! -d "$DIR" ]]; then
   # echo "The $DIR directory does not exist. Cloning fonts."
-  git clone -b $br_name --single-branch --depth 1 https://github.com/aamir-sultan/fonts.git
+  git clone -b $br_name --depth 1 https://github.com/aamir-sultan/fonts.git
   #exit 1
 else
   cd $DIR

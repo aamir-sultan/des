@@ -4,7 +4,7 @@ DIR=$TOOLBOX
 
 # Check if the source directory exists
 if [[ ! -d "$DIR" ]]; then
-  echo "The $DIR directory does not exist. Cloning toolbox."
+  # echo "The $DIR directory does not exist. Cloning toolbox."
   git clone -b $br_name --single-branch --depth 1 https://github.com/aamir-sultan/toolbox.git
   #exit 1
 else

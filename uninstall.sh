@@ -32,7 +32,23 @@ c_echo() {
   esac
 }
 
-source ./scripts/variables.sh
+function set_des_base() {
+cd "$(dirname "${BASH_SOURCE[0]}")"
+DES_PATH=$(pwd)
+DES_PATH_ESC=$(printf %q "$DES_PATH")
+
+# echo DES_PATH set to $DES_PATH
+
+# Keep variables in start as other files are using it so when they are source sometime the variable is not available.
+for file in $DES_PATH/scripts/{variables,functions,path,exports}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+}
+
+set_des_base
+
+# source ./scripts/variables
 
 if [ -f $TOOLBOX/fzf/uninstall ];
 then

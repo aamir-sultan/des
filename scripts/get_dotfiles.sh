@@ -8,14 +8,20 @@ if [ $dotfiles -eq 1 ]; then
   # Check if the source directory exists
   if [[ ! -d "$DIR" ]]; then
     # echo "The $DIR directory does not exist. Cloning dotfiles."
-    git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/dotfiles.git
+    git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/dotfiles.git &
+    wait $! # wait for the command to get completed
+    
+    if [[ "$br_name" == "default" ]]; then
+      br_name="main"
+    fi
+    
     echo "Checking out $DIR repo to $br_name branch.."
-    git checkout $br_name
+    cd $DIR && git checkout $br_name
     #exit 1
   else
     cd $DIR
     # echo "Updating $DIR."
-    echo "Branch to be used $br_name."
+    echo "$br_name branch to be used."
 
     # Take the correct branch name for repo on which it is currently.
     # https://stackoverflow.com/a/1593487/16941779
@@ -23,8 +29,9 @@ if [ $dotfiles -eq 1 ]; then
     repo_br_name=${repo_br_name##refs/heads/}
     repo_br_name=${repo_br_name:-HEAD}
 
-    if [[ "$repo_br_name" == "$br_name" ]]; then
-      echo "Updating $br_name branch for $DIR..."
+    # if [[ "$repo_br_name" == "$br_name" && "$br_name" == "default" ]]; then
+    if [[ "$br_name" == "default" ]]; then
+      echo "Updating $repo_br_name branch for $DIR..."
       git pull
     else 
       echo "Checking out $DIR repo to $br_name branch.."

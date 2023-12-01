@@ -10,7 +10,7 @@ fonts=0
 dotfiles=1
 tools=1
 whose_use=0
-br_name="main"
+br_name="default"
 
 help() {
   cat << EOF

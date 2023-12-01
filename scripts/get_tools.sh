@@ -9,14 +9,20 @@ if [ $tools -eq 1 ]; then
   if [[ ! -d "$DIR" ]]; then
     # echo "The $DIR directory does not exist. Cloning toolbox."
     # IF we don't use the --no-single-branch then at later stages we can't checkout to other branches
-    git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/toolbox.git
+    git clone --no-single-branch --depth 1 https://github.com/aamir-sultan/toolbox.git &&
+    wait $! # wait for the command to get completed
+
+    if [[ "$br_name" == "default" ]]; then
+      br_name="main"
+    fi
+
     echo "Checking out $DIR repo to $br_name branch.."
-    git checkout $br_name
+    cd $DIR && git checkout $br_name
     #exit 1
   else
     cd $DIR
     # echo "Updating $DIR."
-    echo "Branch to be used $br_name."
+    echo "$br_name branch to be used."
 
     # Take the correct branch name for repo on which it is currently.
     # https://stackoverflow.com/a/1593487/16941779
@@ -24,7 +30,7 @@ if [ $tools -eq 1 ]; then
     repo_br_name=${repo_br_name##refs/heads/}
     repo_br_name=${repo_br_name:-HEAD}
 
-    if [[ "$repo_br_name" == "$br_name" ]]; then
+    if [[ "$br_name" == "default" ]]; then
       echo "Updating $br_name branch for $DIR..."
       git pull
     else 

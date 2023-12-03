@@ -42,3 +42,10 @@ tools:
       paths:
         - src: "$TOOLBOX/bat/"
         - dst: "$DOTFILES/bin/"
+          
+  - vivid:
+      name: "vivid"
+      filename: "vivid"
+      paths:
+        - src: "$TOOLBOX/vivid/"
+        - dst: "$DOTFILES/bin/"

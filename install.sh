@@ -11,6 +11,7 @@ dotfiles=1
 tools=1
 whose_use=0
 br_name="default"
+NVIM_CONFIG=""
 
 help() {
   cat << EOF
@@ -63,6 +64,9 @@ for opt in "$@"; do
     --main)            whose_use=0
                        br_name="main"
       ;;
+    --kickstart)       NVIM_CONFIG="kickstart" ;;
+    --nvchad)          NVIM_CONFIG="nvchad"    ;;
+    --lazyvim)         NVIM_CONFIG="lazyvim"   ;;
     *)
       echo "unknown option: $opt"
       help

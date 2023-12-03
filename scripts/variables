@@ -5,6 +5,8 @@ if [ -z "$DES_PATH" ]; then
     DES_PATH="$(cd "$(dirname "$0")" && pwd)"
 fi
 
+# NVIM_CONFIG="default"
+
 TOOLBOX="$DES_PATH/toolbox"
 SCRIPTS="$DES_PATH/scripts"
 CONFIGS="$DES_PATH/configs"

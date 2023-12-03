@@ -11,7 +11,7 @@ dotfiles=1
 tools=1
 whose_use=0
 br_name="default"
-NVIM_CONFIG=""
+nvim_config="default"
 
 help() {
   cat << EOF
@@ -29,6 +29,9 @@ usage: $0 [OPTIONS]
                          toolbox
     --my-br              Use the my branch for fonts, dotfiles and toolbox
     --main               Use the main branch for fonts, dotfiles and toolbox
+    --nvchad             Use NvChad for NeoVim Configuration
+    --lazyvim            Use LazyVim for NeoVim Configuration
+    --kickstart          Use KickStart for NeoVim Configuration. This is the basic config.
 
 EOF
 }
@@ -64,9 +67,9 @@ for opt in "$@"; do
     --main)            whose_use=0
                        br_name="main"
       ;;
-    --kickstart)       NVIM_CONFIG="kickstart" ;;
-    --nvchad)          NVIM_CONFIG="nvchad"    ;;
-    --lazyvim)         NVIM_CONFIG="lazyvim"   ;;
+    --kickstart)       nvim_config="KickStart" ;;
+    --nvchad)          nvim_config="NvChad"    ;;
+    --lazyvim)         nvim_config="LazyVim"   ;;
     *)
       echo "unknown option: $opt"
       help
@@ -89,7 +92,16 @@ done
 unset file
 }
 
+function set_nvim_config(){
+  if [[ "$nvim_config" == "default" ]]; then 
+    NVIM_CONFIG="LazyVim"
+  else
+    NVIM_CONFIG=$nvim_config
+  fi
+}
+
 set_des_base
+set_nvim_config
 
 # *******************************************************************************
                               #  DOTFILES Installation" 

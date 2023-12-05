@@ -49,3 +49,10 @@ tools:
       paths:
         - src: "$TOOLBOX/vivid/"
         - dst: "$DOTFILES/bin/"
+          
+  - ctags:
+      name: "ctags"
+      filename: "ctags"
+      paths:
+        - src: "$TOOLBOX/uctags/bin"
+        - dst: "$DOTFILES/bin/"

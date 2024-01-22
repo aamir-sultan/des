@@ -19,5 +19,18 @@ export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline 
 # export FZF_CTRL_T_COMMAND="fd --type f"
 export FZF_DEFAULT_COMMAND="fd -H -E .git"
 export FZF_CTRL_T_COMMAND="fd -H -E .git"
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+  # --preview 'echo {} | bat --style=numbers --color=always --line-range :500 {}' --preview-window up:3:hidden:wrap
+  # --preview 'echo {} | bat --style=numbers --color=always --line-range :500' --preview-window wrap
+  # --preview 'echo {}' --preview-window up:3:hidden:wrap
+  # --preview 'echo {}' --preview-window up:3:wrap
+  # --preview 'echo {}' --preview-window wrap
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {} | bat --style=plain --color=always --line-range :500' --preview-window wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-/ to toggle the command preview'"
 
 alias fzp='fzf --height=60% --extended --layout=reverse --info=inline --preview "bat --color=always --style=numbers --line-range=:500 {}"'

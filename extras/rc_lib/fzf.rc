@@ -7,7 +7,8 @@ fi
 # Fuzzy File Finder setup and activation
 #---------------------------------------
 [ -f $FZF_PATH/.fzf.bash ] && source $FZF_PATH/.fzf.bash
-export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline --preview '[[ -f {} ]] && bat --style=numbers --color=always --line-range :500 {} || echo {}'"
+export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline --preview '[[ -f {} ]] && bat --style=numbers --color=always --line-range :500 {} || ls -la {}'"
+# export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline --preview '[[ -f {} ]] && bat --style=numbers --color=always --line-range :500 {} || echo {}'"
 # export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline --preview '[[ -f {} ]] && bat --style=numbers --color=always --line-range :500 {} || echo {}'"
 # export FZF_DEFAULT_OPTS="--extended --height=40% --layout=reverse --info=inline --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 # export FZF_DEFAULT_OPTS="--extended --height=40% --preview 'bat --style=numbers --color=always --line-range :500 {}'"

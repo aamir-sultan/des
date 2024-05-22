@@ -15,9 +15,12 @@ else
 	echo Setup file for extra already exists
 fi
 
+# Version of the binaries which should work in any normal place
 # Fields=("name, url, dload_path, dload_tool, dload_switches, post_process_cmds")
 extra_bins=(
-	"nvim, https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+  # Hard code the version of the nvim to remove in any version change related issues.
+	# "nvim, https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	"nvim, https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"fd, https://github.com/sharkdp/fd/releases/download/v8.7.1/fd-v8.7.1-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"bat, https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"vivid, https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
@@ -27,7 +30,7 @@ extra_bins=(
 # Use the tools which are supported on the server side libraries
 # Fields=("name, url, dload_path, dload_tool, dload_switches, post_process_cmds")
 extra_bins_ssh=(
-	"nvim, https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	"nvim, https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"fd, https://github.com/sharkdp/fd/releases/download/v8.7.1/fd-v8.7.1-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"bat, https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
 	"vivid, https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
@@ -80,17 +83,20 @@ for ((i = 0; $i < ${#extras[*]}; i++)); do
 	echo -------------------------------------------------------------------------------
 done
 
-for ((i = 0; $i < ${#extra_bins[*]}; i++)); do
+	# Use the tools which are supported on the server side libraries
+	if [[ "${SSH_TTY}" ]]; then
+    binaries=("${extra_bins_ssh[@]}")
+	else
+    binaries=("${extra_bins[@]}")
+	fi
+
+for ((i = 0; $i < ${#binaries[*]}; i++)); do
 	echo -------------------------------------------------------------------------------
 
 	# Use the tools which are supported on the server side libraries
-	if [[ "${SSH_TTY}" ]]; then
-		temp=(${extra_bins_ssh[$i]})
-	else
-		temp=(${extra_bins[$i]})
-	fi
+  temp=(${binaries[$i]})
 	echo "Array elements: ${temp[@]}"
-	IFS=, read -ra bin_info <<<"${extra_bins[$i]}"
+	IFS=, read -ra bin_info <<<"${binaries[$i]}"
 
 	name=${bin_info[0]}
 	url=${bin_info[1]}

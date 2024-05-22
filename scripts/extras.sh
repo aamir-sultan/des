@@ -24,6 +24,17 @@ extra_bins=(
 	# "uctags, https://github.com/universal-ctags/ctags-nightly-build/releases/download/2023.12.03%2B684ed1d057eef7dd5b81a2d3a7576f96d4a827b9/uctags-2023.12.03-linux-x86_64.tar.xz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xf dfile"
 )
 
+# Use the tools which are supported on the server side libraries
+# Fields=("name, url, dload_path, dload_tool, dload_switches, post_process_cmds")
+extra_bins_ssh=(
+	https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+	"nvim, https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	"fd, https://github.com/sharkdp/fd/releases/download/v8.7.1/fd-v8.7.1-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	"bat, https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	"vivid, https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-unknown-linux-musl.tar.gz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xzf dfile"
+	# "uctags, https://github.com/universal-ctags/ctags-nightly-build/releases/download/2023.12.03%2B684ed1d057eef7dd5b81a2d3a7576f96d4a827b9/uctags-2023.12.03-linux-x86_64.tar.xz, $TOOLBOX, wget, --directory-prefix=$TOOLBOX, tar xf dfile"
+)
+
 # Fields=("git_url, path, hash_or_branch, clone_switches, install_switches/install_command")
 extras=(
 	"fzf, https://github.com/junegunn/fzf.git, $TOOLBOX/fzf,  master, --depth 1, ./install --key-bindings --completion --no-update-rc; mv ~/.fzf.bash $TOOLBOX/fzf/.fzf.bash"
@@ -72,7 +83,13 @@ done
 
 for ((i = 0; $i < ${#extra_bins[*]}; i++)); do
 	echo -------------------------------------------------------------------------------
-	temp=(${extra_bins[$i]})
+
+	# Use the tools which are supported on the server side libraries
+	if [[ "${SSH_TTY}" ]]; then
+		temp=(${extra_bins_ssh[$i]})
+	else
+		temp=(${extra_bins[$i]})
+	fi
 	echo "Array elements: ${temp[@]}"
 	IFS=, read -ra bin_info <<<"${extra_bins[$i]}"
 

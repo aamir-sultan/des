@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# source $DOTFILES/../extras/rc_lib/fzf.theme
+
 if [ -z "$FZF_PATH" ]; then
     FZF_PATH="$DOTFILES/../toolbox/fzf"
 fi
@@ -35,5 +37,7 @@ export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
   --header 'Press CTRL-/ to toggle the command preview'"
+
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} ${FZF_THEME}"
 
 alias fzp='fzf --height=60% --extended --layout=reverse --info=inline --preview "bat --color=always --style=numbers --line-range=:500 {}"'

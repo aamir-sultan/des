@@ -101,25 +101,26 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   name=${bin_info[0]}
   url=${bin_info[1]}
   dload_path=${bin_info[2]}
-  # file_extension are related to dload_path and used in the following commands
-  filename=$(basename "$url")
+  dload_tool=${bin_info[3]}
+  dload_switches=${bin_info[4]}
+  post_proc_cmd=${bin_info[5]}
 
-  # dload_tool=${bin_info[3]}
-
+  # Check for the requested tool if it is not available use the curl instead
   if command -v ${bin_info[3]} >/dev/null 2>&1; then
     echo "Using $dload_tool to download the file."
-    dload_tool=${bin_info[3]}
+    dload_command=$dload_tool $dload_switches
   elif command -v curl >/dev/null 2>&1; then
     echo "Using curl to download the file."
     dload_tool=curl
+    dload_switches=-o $dload_path
+    dload_command=$dload_tool
   else
     echo "Error: Neither ${bin_info[3]} nor curl is available on this system."
     exit 1
   fi
 
-  dload_switches=${bin_info[4]}
-  post_proc_cmd=${bin_info[5]}
-
+  # file_extension are related to dload_path and used in the following commands
+  filename=$(basename "$url")
   setup_path=$dload_path/$name
   file_path=$dload_path/$filename
 
@@ -129,6 +130,7 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   echo "Download Path:            $dload_path"
   echo "Download tool:            $dload_tool"
   echo "Download switches:        $dload_switches"
+  echo "Download command:         $dload_command"
   echo "Post Processing command:  $post_proc_cmd"
   echo "Setup Path:               $setup_path"
   echo "File Path:                $file_path"

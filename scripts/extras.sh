@@ -104,7 +104,19 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   # file_extension are related to dload_path and used in the following commands
   filename=$(basename "$url")
 
-  dload_tool=${bin_info[3]}
+  # dload_tool=${bin_info[3]}
+
+  if command -v ${bin_info[3]} >/dev/null 2>&1; then
+    echo "Using $dload_tool to download the file."
+    dload_tool=${bin_info[3]}
+  elif command -v curl >/dev/null 2>&1; then
+    echo "Using curl to download the file."
+    dload_tool=curl
+  else
+    echo "Error: Neither ${bin_info[3]} nor curl is available on this system."
+    exit 1
+  fi
+
   dload_switches=${bin_info[4]}
   post_proc_cmd=${bin_info[5]}
 

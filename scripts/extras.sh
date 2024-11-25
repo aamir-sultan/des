@@ -113,7 +113,7 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
     echo "Using curl to download the file."
     dload_tool=curl
     dload_switches=-o $dload_path
-    dload_command=$dload_tool
+    dload_command=$dload_tool $dload_switches
   else
     echo "Error: Neither ${bin_info[3]} nor curl is available on this system."
     exit 1

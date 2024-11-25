@@ -105,6 +105,11 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   dload_switches=${bin_info[4]}
   post_proc_cmd=${bin_info[5]}
 
+  # file_extension are related to dload_path and used in the following commands
+  filename=$(basename "$url")
+  setup_path=$dload_path/$name
+  file_path=$dload_path/$filename
+
   # Check for the requested tool if it is not available use the curl instead
   if command -v ${bin_info[3]} >/dev/null 2>&1; then
     echo "Using $dload_tool to download the file."
@@ -112,17 +117,12 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   elif command -v curl >/dev/null 2>&1; then
     echo "Using curl to download the file."
     dload_tool=curl
-    dload_switches="-o $dload_path"
-    dload_command=$dload_tool $dload_switches
+    dload_switches="-Lo $file_path"
+    dload_command="$dload_tool $dload_switches"
   else
     echo "Error: Neither ${bin_info[3]} nor curl is available on this system."
     exit 1
   fi
-
-  # file_extension are related to dload_path and used in the following commands
-  filename=$(basename "$url")
-  setup_path=$dload_path/$name
-  file_path=$dload_path/$filename
 
   echo "Name:                      $name"
   echo "URL:                      $url"
@@ -139,7 +139,7 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   # Cloning setup
   if [ ! -d $setup_path ]; then
     if [ ! -f $file_path ]; then
-      $dload_tool $url $dload_switches
+      $dload_command $url
     fi
     cd $dload_path
     mv $filename dfile

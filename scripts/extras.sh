@@ -113,10 +113,10 @@ for ((i = 0; $i < ${#binaries[*]}; i++)); do
   # Check for the requested tool if it is not available use the curl instead
   if command -v ${bin_info[3]} >/dev/null 2>&1; then
     echo "Using $dload_tool to download the file."
-    dload_command=$dload_tool $dload_switches
+    dload_command="$dload_tool $dload_switches"
   elif command -v curl >/dev/null 2>&1; then
     echo "Using curl to download the file."
-    dload_tool=curl
+    dload_tool="curl"
     dload_switches="-Lo $file_path"
     dload_command="$dload_tool $dload_switches"
   else
